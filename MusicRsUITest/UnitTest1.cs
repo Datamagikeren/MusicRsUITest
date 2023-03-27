@@ -3,10 +3,11 @@ namespace MusicRsUITest
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Edge;
-    using OpenQA.Selenium.Firefox;
-    using OpenQA.Selenium.IE;
-    using OpenQA.Selenium.Support.UI;
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium.Support.UI;
 
     [TestClass]
     public class UnitTest1
@@ -33,18 +34,24 @@ namespace MusicRsUITest
             _driver.Dispose();
         }
 
-        string url = "http://127.0.0.1:5500/JavaScript/index.html";
+        string url = "http://127.0.0.1:5500/index.html";
+       
         [TestMethod]
         public void TestTitle()
         {
-            //string url = "file:///C:/andersb/javascript/sayhelloVue3/index.htm";
-            //string url = "https://anbo-sayhello.azurewebsites.net/";
-            //string url = "http://localhost:5502/index.htm";
             _driver.Navigate().GoToUrl(url);
 
-            Assert.AreEqual("DDKRREST", _driver.Title);
+            Assert.AreEqual("DKRREST", _driver.Title);
+        }
 
+        [TestMethod]
+        public void TestIndex1()
+        {
+            _driver.Navigate().GoToUrl(url);
 
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            IWebElement tableMusic = wait.Until(d => d.FindElement(By.Id("table")));
+            Assert.IsTrue(tableMusic.Text.Contains("Mamma Mia"));
         }
     }
-    }
+}
