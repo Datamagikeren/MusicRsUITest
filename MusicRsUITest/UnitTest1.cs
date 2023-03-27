@@ -42,7 +42,7 @@ namespace MusicRsUITest
             //string url = "http://localhost:5502/index.htm";
             _driver.Navigate().GoToUrl(url);
 
-            Assert.AreEqual("DKRREST", _driver.Title);
+            Assert.AreEqual("DDKRREST", _driver.Title);
 
 
         }
